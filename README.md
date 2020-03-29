@@ -20,7 +20,7 @@ Compile and run ESPHomeKit with a specific 8 digit pin (given as `-pin` command 
 and open Apple Home app. Add a new (untrusted) device (it should already appear in the dialog) and
 enter the pin. That's it.
 
-# Limitations
+## Limitations
 
 By now only color lights and temperature sensors are supported because that's what
 I needed.  
