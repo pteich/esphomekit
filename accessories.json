@@ -1,0 +1,23 @@
+[
+  {
+    "type": "colorlight",
+    "id": "neopixel",
+    "name": "Moodlight",
+    "addr": "192.168.4.46:80",
+    "manufacturer": "PET"
+  },
+  {
+    "type": "colorlight",
+    "id": "neopixel",
+    "name": "Sleeplight",
+    "addr": "192.168.4.48:80",
+    "manufacturer": "PET"
+  },
+  {
+    "type": "temperature",
+    "id": "temperature",
+    "name": "Moodlight",
+    "addr": "192.168.4.48:80",
+    "manufacturer": "PET"
+  }
+]
