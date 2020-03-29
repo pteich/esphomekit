@@ -6,8 +6,8 @@ import (
 )
 
 const (
-	TypeAccessoryColorLight  = "colorlight"
-	TypeAccessoryTemperature = "temperature"
+	TypeColorLight  = "colorlight"
+	TypeTemperature = "temperature"
 )
 
 // EsphomeDevices is the list of esphome devices in config file

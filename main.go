@@ -29,7 +29,7 @@ func main() {
 	accessories := make([]*accessory.Accessory, 0)
 	for _, accConfig := range accConfigs {
 		switch accConfig.Type {
-		case config.TypeAccessoryColorLight:
+		case config.TypeColorLight:
 			acc := accessory.NewColoredLightbulb(accessory.Info{
 				Name:             accConfig.Name,
 				Manufacturer:     accConfig.Manufacturer,
@@ -41,7 +41,7 @@ func main() {
 			light.Init()
 			accessories = append(accessories, acc.Accessory)
 
-		case config.TypeAccessoryTemperature:
+		case config.TypeTemperature:
 			acc := accessory.NewTemperatureSensor(accessory.Info{
 				Name:             accConfig.Name,
 				Manufacturer:     accConfig.Manufacturer,
