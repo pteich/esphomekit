@@ -196,3 +196,7 @@ func (cl *Colorlight) SetColor(color colorful.Color) {
 func (cl *Colorlight) GetDeviceUrl() string {
 	return fmt.Sprintf("http://%s/light/%s", cl.addr, cl.id)
 }
+
+func (cl *Colorlight) GetAccessory() *accessory.Accessory {
+	return cl.accessory.Accessory
+}

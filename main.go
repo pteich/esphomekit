@@ -8,6 +8,7 @@ import (
 
 	"github.com/pteich/esphomekit/colorlight"
 	"github.com/pteich/esphomekit/config"
+	"github.com/pteich/esphomekit/devices"
 	"github.com/pteich/esphomekit/sensor"
 )
 
@@ -30,7 +31,7 @@ func main() {
 	bridge := accessory.NewBridge(accessory.Info{Name: "EspHomekit Bridge", ID: accID})
 
 	// every esphome device need to have an accessory in HomeKit and and internal service that takes care of updates
-	accessories := make([]*accessory.Accessory, 0)
+	deviceList := make(devices.List, 0)
 	for _, accConfig := range accConfigs {
 		accID++
 		switch accConfig.Type {
@@ -45,7 +46,7 @@ func main() {
 			})
 			light := colorlight.New(accConfig.ID, accConfig.Addr, acc, httpClient, log)
 			light.Init()
-			accessories = append(accessories, acc.Accessory)
+			deviceList = append(deviceList, light)
 
 		case config.TypeTemperature:
 			acc := accessory.NewTemperatureSensor(accessory.Info{
@@ -58,17 +59,18 @@ func main() {
 			}, 25, -15, 85, 0.1)
 			tempsensor := sensor.NewTemperature(accConfig.ID, accConfig.Addr, acc, httpClient, log)
 			tempsensor.Init()
-			accessories = append(accessories, acc.Accessory)
+			deviceList = append(deviceList, tempsensor)
+
 		}
 	}
 
-	log.Info().Int("count", len(accessories)).Msg("add accessories")
+	log.Info().Int("count", len(deviceList)).Msg("add accessories")
 	// init HomeKit ip connection with pin
 	hcConfig := hc.Config{
 		Pin: cfg.Pin,
 	}
 
-	hcTransport, err := hc.NewIPTransport(hcConfig, bridge.Accessory, accessories...)
+	hcTransport, err := hc.NewIPTransport(hcConfig, bridge.Accessory, deviceList.GetAccessories()...)
 	if err != nil {
 		log.Fatal().Err(err).Msg("error creating transport")
 	}

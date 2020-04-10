@@ -64,3 +64,7 @@ func (t *Temperature) UpdateTemp() {
 	t.log.Info().Str("name", t.id).Float64("temp", apiResponse.Value).Msg("update temp")
 	t.accessory.TempSensor.CurrentTemperature.SetValue(apiResponse.Value)
 }
+
+func (t *Temperature) GetAccessory() *accessory.Accessory {
+	return t.accessory.Accessory
+}
