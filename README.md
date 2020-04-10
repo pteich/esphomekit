@@ -17,10 +17,10 @@ almost all ESP devices even the famous Sonoff.
 To compile ESPHomeKit you need an working Go environment. 
 Compile (`make build-arm` for Raspberry Pis) and run ESPHomeKit with a specific 8 digit pin (given as `-pin` command line flag) and open Apple's Home app. Tap to add a new device ("EspHomeKit Bridge" should already appear in the dialog) accept the message about untrusted devices and enter the pin. That's it.
 
-Commandline flags:
-`-pin` the 8 digit pin for HomeKit
-`-config` path to config file with all you accessories
-`-logConsole` log in human readable format to console, otherwise json log is created
+**Commandline flags:**  
+`-pin` the 8 digit pin for HomeKit  
+`-config` path to config file with all you accessories  
+`-logConsole` log in human readable format to console, otherwise json log is created  
 `-logLevel` one of debug info or error - defaults to debug
 
 ## Limitations
