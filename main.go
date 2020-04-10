@@ -25,12 +25,18 @@ func main() {
 
 	log.Info().Interface("config", cfg).Interface("accessories", accConfigs).Msg("starting esphomekit")
 
+	// add bridge
+	var accID uint64 = 1
+	bridge := accessory.NewBridge(accessory.Info{Name: "EspHomekit Bridge", ID: accID})
+
 	// every esphome device need to have an accessory in HomeKit and and internal service that takes care of updates
 	accessories := make([]*accessory.Accessory, 0)
 	for _, accConfig := range accConfigs {
+		accID++
 		switch accConfig.Type {
 		case config.TypeColorLight:
 			acc := accessory.NewColoredLightbulb(accessory.Info{
+				ID:               accID,
 				Name:             accConfig.Name,
 				Manufacturer:     accConfig.Manufacturer,
 				SerialNumber:     accConfig.SerialNumber,
@@ -43,6 +49,7 @@ func main() {
 
 		case config.TypeTemperature:
 			acc := accessory.NewTemperatureSensor(accessory.Info{
+				ID:               accID,
 				Name:             accConfig.Name,
 				Manufacturer:     accConfig.Manufacturer,
 				SerialNumber:     accConfig.SerialNumber,
@@ -51,18 +58,17 @@ func main() {
 			}, 25, -15, 85, 0.1)
 			tempsensor := sensor.NewTemperature(accConfig.ID, accConfig.Addr, acc, httpClient, log)
 			tempsensor.Init()
+			accessories = append(accessories, acc.Accessory)
 		}
 	}
 
-	if len(accessories) <= 0 {
-		log.Fatal().Msg("no accessories defined")
-	}
-
+	log.Info().Int("count", len(accessories)).Msg("add accessories")
 	// init HomeKit ip connection with pin
 	hcConfig := hc.Config{
 		Pin: cfg.Pin,
 	}
-	hcTransport, err := hc.NewIPTransport(hcConfig, accessories[0], accessories[0:]...)
+
+	hcTransport, err := hc.NewIPTransport(hcConfig, bridge.Accessory, accessories...)
 	if err != nil {
 		log.Fatal().Err(err).Msg("error creating transport")
 	}

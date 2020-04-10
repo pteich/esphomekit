@@ -3,14 +3,15 @@ package colorlight
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/brutella/hc/accessory"
-	"github.com/lucasb-eyer/go-colorful"
-	"github.com/pteich/logger"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"strconv"
 	"time"
+
+	"github.com/brutella/hc/accessory"
+	"github.com/lucasb-eyer/go-colorful"
+	"github.com/pteich/logger"
 )
 
 type Colorlight struct {
@@ -36,6 +37,7 @@ func New(id string, addr string, acc *accessory.ColoredLightbulb, httpClient *ht
 }
 
 func (cl *Colorlight) Init() {
+
 	req, _ := http.NewRequest(http.MethodGet, cl.GetDeviceUrl(), nil)
 
 	resp, err := cl.httpClient.Do(req)
@@ -62,7 +64,7 @@ func (cl *Colorlight) Init() {
 		B: float64(apiResponse.Color.B) / 255,
 	}
 
-	cl.log.Info().Interface("response", apiResponse).Msg("status")
+	cl.log.Debug().Interface("response", apiResponse).Msg("api status response")
 
 	cl.accessory.Lightbulb.On.OnValueRemoteGet(func() bool {
 		cl.log.Info().Bool("value", cl.GetState()).Msg("switch get")

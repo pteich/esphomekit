@@ -16,8 +16,15 @@
   {
     "type": "temperature",
     "id": "temperature",
-    "name": "Moodlight",
+    "name": "Inside",
     "addr": "192.168.4.48:80",
+    "manufacturer": "PET"
+  },
+  {
+    "type": "temperature",
+    "id": "outside_temperature",
+    "name": "Outside",
+    "addr": "192.168.4.46:80",
     "manufacturer": "PET"
   }
 ]
