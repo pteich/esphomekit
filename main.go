@@ -67,7 +67,8 @@ func main() {
 	log.Info().Int("count", len(deviceList)).Msg("add accessories")
 	// init HomeKit ip connection with pin
 	hcConfig := hc.Config{
-		Pin: cfg.Pin,
+		Pin:         cfg.Pin,
+		StoragePath: cfg.StoragePath,
 	}
 
 	hcTransport, err := hc.NewIPTransport(hcConfig, bridge.Accessory, deviceList.GetAccessories()...)

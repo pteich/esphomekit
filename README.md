@@ -19,7 +19,8 @@ Compile (`make build-arm` for Raspberry Pis) and run ESPHomeKit with a specific 
 
 **Commandline flags:**  
 `-pin` the 8 digit pin for HomeKit  
-`-config` path to config file with all you accessories  
+`-config` path to config file with all you accessories (default: ./accessories.json)
+`-storage` path storage for HomeKit transport data (default: ./)  
 `-logConsole` log in human readable format to console, otherwise json log is created  
 `-logLevel` one of debug info or error - defaults to debug
 
