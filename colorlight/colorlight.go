@@ -46,6 +46,7 @@ func (cl *Colorlight) Init() {
 		return
 	}
 
+	defer resp.Body.Close()
 	apiResponse := Response{}
 	err = json.NewDecoder(resp.Body).Decode(&apiResponse)
 	if err != nil {

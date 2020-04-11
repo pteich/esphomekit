@@ -36,7 +36,7 @@ func (t *Temperature) GetDeviceUrl() string {
 func (t *Temperature) Init() {
 	t.UpdateTemp()
 
-	t.scheduler = time.NewTicker(15 * time.Second)
+	t.scheduler = time.NewTicker(30 * time.Second)
 	go func() {
 		for range t.scheduler.C {
 			t.UpdateTemp()
@@ -52,6 +52,7 @@ func (t *Temperature) UpdateTemp() {
 		return
 	}
 
+	defer resp.Body.Close()
 	apiResponse := Response{}
 	err = json.NewDecoder(resp.Body).Decode(&apiResponse)
 	if err != nil {
