@@ -37,7 +37,6 @@ func New(id string, addr string, acc *accessory.ColoredLightbulb, httpClient *ht
 }
 
 func (cl *Colorlight) Init() {
-
 	req, _ := http.NewRequest(http.MethodGet, cl.GetDeviceUrl(), nil)
 
 	resp, err := cl.httpClient.Do(req)
