@@ -1,21 +1,32 @@
 module github.com/pteich/esphomekit
 
-go 1.14
+go 1.18
 
 require (
-	github.com/brutella/hc v1.2.2
+	github.com/brutella/hc v1.2.5
 	github.com/golang/protobuf v1.3.5
-	github.com/lucasb-eyer/go-colorful v1.0.3
-	github.com/miekg/dns v1.1.31 // indirect
-	github.com/pteich/configstruct v1.1.0
+	github.com/lucasb-eyer/go-colorful v1.2.0
+	github.com/pteich/configstruct v1.5.1
 	github.com/pteich/go-timeout-httpclient v0.0.0-20200110111718-916aff4d9c82
-	github.com/pteich/logger v1.1.2
-	github.com/xiam/to v0.0.0-20200126224905-d60d31e03561 // indirect
-	golang.org/x/crypto v0.0.0-20201002170205-7f63de1d35b0 // indirect
-	golang.org/x/net v0.0.0-20201009032441-dbdefad45b89 // indirect
-	golang.org/x/sys v0.0.0-20201009025420-dfb3f7c4e634 // indirect
-	golang.org/x/text v0.3.3 // indirect
+	github.com/pteich/logger v1.3.2
 	google.golang.org/grpc v1.28.0
+)
+
+require (
+	github.com/brutella/dnssd v1.2.3 // indirect
+	github.com/mattn/go-colorable v0.1.12 // indirect
+	github.com/mattn/go-isatty v0.0.14 // indirect
+	github.com/miekg/dns v1.1.50 // indirect
+	github.com/rs/zerolog v1.27.0 // indirect
+	github.com/tadglines/go-pkgs v0.0.0-20210623144937-b983b20f54f9 // indirect
+	github.com/xiam/to v0.0.0-20200126224905-d60d31e03561 // indirect
+	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa // indirect
+	golang.org/x/mod v0.6.0-dev.0.20220419223038-86c51ed26bb4 // indirect
+	golang.org/x/net v0.0.0-20220812174116-3211cb980234 // indirect
+	golang.org/x/sys v0.0.0-20220811171246-fbc7d0a398ab // indirect
+	golang.org/x/text v0.3.7 // indirect
+	golang.org/x/tools v0.1.12 // indirect
+	golang.org/x/xerrors v0.0.0-20220609144429-65e65417b02f // indirect
 )
 
 replace google.golang.org/grpc => github.com/grpc/grpc-go v1.28.0
